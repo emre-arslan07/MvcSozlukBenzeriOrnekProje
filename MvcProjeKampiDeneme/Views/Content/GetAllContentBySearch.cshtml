@@ -1,0 +1,55 @@
+﻿@using MvcProjeKampiDeneme.Entity.Concrete
+@model List<Content>
+
+
+@{
+    ViewBag.Title = "GetAllContentBySearch";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using(Html.BeginForm("GetAllContentBySearch","Content",FormMethod.Post))
+{
+    <p>
+        Aranacak Kelimeyi girin:@Html.TextBox("p")
+        <input class="btn btn-secondary" type="submit" value="Ara" />
+    </p>
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- /.tab-pane -->
+                <!-- The timeline -->
+                <div class="timeline">
+                    @foreach (var item in Model)
+                    {
+
+                        <!-- timeline time label -->
+                        <div class="time-label">
+                            <span class="bg-success">
+                                @item.ContentDate.ToShortDateString()
+                            </span>
+                        </div>
+                        <div>
+                            <i class="fas fa-comments bg-warning"></i>
+                            <div class="timeline-item">
+                                <span class="time"></span>
+
+                                <h3 class="timeline-header"><a href="#">@item.Writer.WriterName @item.Writer.WriterSurname</a></h3>
+
+                                <div class="timeline-body">
+                                    @item.ContentValue
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
